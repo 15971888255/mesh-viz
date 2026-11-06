@@ -740,7 +740,7 @@ static QVector<ChannelStateSegment> buildChannelStateSegments(
 
 PpduTimelineView::PpduTimelineView(QWidget *parent)
     : QWidget(parent),
-      m_rowMode(TimelineRowMode::BySender),
+      m_rowMode(TimelineRowMode::ByNodeLink), // MLO: group lanes by node+link, not sender MAC
       m_viewMode(TimelineViewMode::PpduTimeline)
 {
     setMouseTracking(true);
@@ -3362,7 +3362,7 @@ void PpduTimelineView::resetPage()
     m_lastRangeX = 0;
 
     /* ===== view mode ===== */
-    m_rowMode = TimelineRowMode::BySender;
+    m_rowMode = TimelineRowMode::ByNodeLink; // MLO: node+link lanes
     m_viewMode = TimelineViewMode::PpduTimeline;
 
     /* ===== overlays ===== */
